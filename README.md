@@ -37,31 +37,31 @@ Autenticação (Públicos)
 httpPOST /auth/register
 Content-Type: application/json
 
-'''{
+```{
   "username": "joao",
   "email": "joao@email.com",
   "password": "senha123"
-}'''
+}```
 Resposta:
-'''json{
+```json{
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "username": "joao",
   "email": "joao@email.com"
-}'''
+}```
 ### Login
 httpPOST /auth/login
 Content-Type: application/json
 
-'''{
+```{
   "username": "joao",
   "password": "senha123"
-}'''
+}```
 Resposta:
-'''json{
+```json{
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "username": "joao",
   "email": "joao@email.com"
-}'''
+}```
 Posts (Requer Autenticação)
 ⚠️ Todos os endpoints abaixo requerem o header:
 Authorization: Bearer <seu-token-jwt>
@@ -70,10 +70,10 @@ httpPOST /posts
 Content-Type: application/json
 Authorization: Bearer <token>
 
-'''{
+```{
   "titulo": "Meu primeiro post",
   "conteudo": "Conteúdo do post aqui..."
-}'''
+}```
 ### Listar todos os posts
 httpGET /posts
 Authorization: Bearer <token>
@@ -88,32 +88,32 @@ httpPUT /posts/1
 Content-Type: application/json
 Authorization: Bearer <token>
 
-'''{
+```{
   "titulo": "Título atualizado",
   "conteudo": "Conteúdo atualizado..."
-}'''
+}```
 ### Deletar post
 httpDELETE /posts/1
 Authorization: Bearer <token>
 
 ## 🗄️ Estrutura do Banco de Dados
 Tabela: usuarios
-'''sqlCREATE TABLE usuarios (
+```sqlCREATE TABLE usuarios (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     data_criacao DATETIME
-);'''
+);```
 Tabela: posts
-'''sqlCREATE TABLE posts (
+```sqlCREATE TABLE posts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     conteudo TEXT,
     data_publicacao DATETIME,
     usuario_id BIGINT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);'''
+);```
 
 ## 🔐 Segurança
 Senhas são criptografadas com BCrypt
@@ -123,7 +123,7 @@ Apenas endpoints /auth/** são públicos
 Usuários só podem editar/deletar seus próprios posts
 
 ## 📁 Estrutura do Projeto
-'''src/main/java/com/example/demo/
+```src/main/java/com/example/demo/
 ├── controller/
 │   ├── AuthController.java      # Endpoints de autenticação
 │   └── PostController.java      # CRUD de posts
@@ -141,7 +141,7 @@ Usuários só podem editar/deletar seus próprios posts
 │   ├── JwtUtil.java             # Utilitários JWT
 │   ├── JwtAuthenticationFilter.java  # Filtro JWT
 │   └── CustomUserDetailsService.java # UserDetailsService
-└── DemoApplication.java         # Classe principal'''
+└── DemoApplication.java         # Classe principal```
 
 ## 👨‍💻 Autores
  - Hélio Ferreira
